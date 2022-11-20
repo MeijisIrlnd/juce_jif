@@ -46,7 +46,8 @@ public:
         auto imgToDraw = frames[curIdx].first.rescaled(getWidth(), getHeight(), juce::Graphics::ResamplingQuality::highResamplingQuality);
        
     //    g.drawImage(imgToDraw, getLocalBounds().toFloat(), juce::RectanglePlacement::centred);
-        g.drawImage(imgToDraw, getBounds().toFloat(), juce::RectanglePlacement::centred);
+        //g.drawImage(imgToDraw, getBounds().toFloat(), juce::RectanglePlacement::centred);
+        g.drawImage(imgToDraw, getLocalBounds().toFloat(), juce::RectanglePlacement::centred);
     }
 
     void start()
