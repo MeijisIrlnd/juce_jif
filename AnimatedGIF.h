@@ -44,7 +44,7 @@ public:
     void paint(juce::Graphics& g) override
     {
         auto imgToDraw = frames[curIdx].first.rescaled(getWidth(), getHeight(), juce::Graphics::ResamplingQuality::highResamplingQuality);
-       
+        imgToDraw.multiplyAllAlphas(m_alphaMultiplier);
     //    g.drawImage(imgToDraw, getLocalBounds().toFloat(), juce::RectanglePlacement::centred);
         //g.drawImage(imgToDraw, getBounds().toFloat(), juce::RectanglePlacement::centred);
         g.drawImage(imgToDraw, getLocalBounds().toFloat(), juce::RectanglePlacement::centred);
@@ -64,6 +64,8 @@ public:
         stopTimer();
         curIdx = 0;
     }
+
+    void setAlpha(double newAlphaMultiplier) { m_alphaMultiplier = newAlphaMultiplier; }
 
 private:
     static void Frame(void* data, struct GIF_WHDR* whdr) { reinterpret_cast<AnimatedGIF*>(data)->frameCallback(*whdr); }
@@ -120,5 +122,6 @@ private:
     size_t                             curIdx = 0;
     std::vector<std::pair<juce::Image, int>> frames;
     bool m_passedFirstFrame{ false };
+    double m_alphaMultiplier = 1;
     Listener* m_listener{ nullptr };
 };

@@ -14,3 +14,4 @@ dependencies: juce_graphics
 END_JUCE_MODULE_DECLARATION
 #endif
 #include "AnimatedGIF.h"
+#include "GIFLooper.h"
